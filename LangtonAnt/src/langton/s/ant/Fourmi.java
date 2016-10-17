@@ -4,13 +4,15 @@ package langton.s.ant;
 public class Fourmi {
     
     private Orientation orientation;
-    private Coordonnée coordonnee;
+    private Cellule cell;
 
     
     
-    public Fourmi(Coordonnée coordonnee) {
+    public Fourmi(Cellule cell) {
         this.orientation = Orientation.Haut;
-        this.coordonnee = coordonnee;
+        this.cell=cell;
+        
+        
     }
 
     public Orientation getOrientation() {
@@ -21,18 +23,22 @@ public class Fourmi {
         this.orientation = orientation;
     }
 
-    public Coordonnée getCoordonnee() {
-        return coordonnee;
+    public Cellule getCell() {
+        return cell;
     }
 
-    public void setCoordonnee(Coordonnée coordonnee) {
-        this.coordonnee = coordonnee;
+    public void setCell(Cellule cell) {
+        this.cell = cell;
     }
+
+
+ 
     
-    
-    
-    
-    
+    public void Bouger(){
+        if(this.getCell().getCouleur()==Color.Black){
+            
+        }
+    }
     
     
 }

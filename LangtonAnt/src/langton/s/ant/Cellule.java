@@ -6,14 +6,16 @@ package langton.s.ant;
 public class Cellule {
     
     private Color couleur;
-    private Coordonnée coordonnee;
+    private int x,y;
     private boolean estPrésent;
     
     
     
-    public Cellule(){
+    public Cellule(int x, int y){
         this.couleur=Color.White;
         this.estPrésent=false;
+        this.x=x;
+        this.y=y;
         
     }
 
@@ -25,13 +27,23 @@ public class Cellule {
         this.couleur = couleur;
     }
 
-    public Coordonnée getCoordonnee() {
-        return coordonnee;
+    public int getX() {
+        return x;
     }
 
-    public void setCoordonnee(Coordonnée coordonnee) {
-        this.coordonnee = coordonnee;
+    public void setX(int x) {
+        this.x = x;
     }
+
+    public int getY() {
+        return y;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
+
+
 
     public boolean isEstPrésent() {
         return estPrésent;

@@ -1,18 +1,8 @@
 package langton.s.ant;
 import java.awt.Dimension;
-import java.awt.Graphics;
 import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.Map;
-import java.util.TreeMap;
-import javafx.scene.paint.Color;
-import static javafx.scene.paint.Color.color;
-import static javafx.scene.paint.Color.color;
 import javax.swing.BorderFactory;
-import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class FourmiGraphique {
@@ -39,7 +29,7 @@ public class FourmiGraphique {
         this.fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.fenetre.setPreferredSize(new Dimension(900,900));
         this.fenetre.setLocationRelativeTo(null);
-        //this.fenetre.setResizable(false);
+        
         
         //Panel
         this.fenetre.setContentPane(panneau);
@@ -51,19 +41,22 @@ public class FourmiGraphique {
         this.fenetre.setLayout(layout);
         
         
+        
+        
+        
+        
         for (int i =0;i<this.cellules.length;i++){
             
             for ( int j=0; j<this.cellules[i].length;j++){
               
-                this.cellules[i][j] = new JPanel();
+                this.cellules[i][j] = new JPanel(); // Instanciation des Panels
+                this.panneau.add(this.cellules[i][j]);  // on les ajoute au panneau
+                this.cellules[i][j].setBorder(BorderFactory.createLineBorder(java.awt.Color.GRAY));  // bordure grise sur les panels
                 
-                this.panneau.add(this.cellules[i][j]);
-                this.cellules[i][j].setBorder(BorderFactory.createLineBorder(java.awt.Color.GRAY));
-                
-                if (i == this.ctrl.getModèle().getAnt().getCell().getX() && j == this.ctrl.getModèle().getAnt().getCell().getY()){
-                    this.cellules[i][j].setBackground(java.awt.Color.red);
+                if (i == this.ctrl.getModèle().getAnt().getCell().getX() && j == this.ctrl.getModèle().getAnt().getCell().getY()){ // si la coordonnée correspond à celle de la fourmi,
+                    this.cellules[i][j].setBackground(java.awt.Color.red); //  elle sera rouge
                 } else {
-                    this.cellules[i][j].setBackground(this.ctrl.getModèle().getPlateau()[i][j].getCouleur());
+                    this.cellules[i][j].setBackground(this.ctrl.getModèle().getPlateau()[i][j].getCouleur()); // sinon elle sera de la couleur qu'elle doit être
                 }
                 
             }   
@@ -75,7 +68,7 @@ public class FourmiGraphique {
     }
 
     
-    public void mise_a_jour(){
+    public void mise_a_jour(){ // mise à jour des couleurs
         
         for (int i =0;i<this.cellules.length;i++){
             

@@ -14,17 +14,43 @@ public class FourmiControleur {
         this.modèle=mod;
     }
     
+
     public void start(){
-        for(int i=0; i<500;i++){
+        
+        boolean stop = false;
+        
+        
+        
+        while( stop != true){
+        
+        
+            
+            int x = this.modèle.getAnt().getCell().getX();
+            int y = this.modèle.getAnt().getCell().getY();
+            
             this.modèle.getAnt().Bouger();
-            this.vue.getFenetre().repaint();
-            this.vue.mise_a_jour();
-        try{
-            Thread.sleep(250);
             
-        } catch(InterruptedException e){ }
+            int x1 = this.modèle.getAnt().getCell().getX();
+            int y1 = this.modèle.getAnt().getCell().getY();
             
+            if (x == x1 && y == y1){
+                stop=true;
+            } else {
+            
+                
+                this.vue.mise_a_jour();
+               
+                
+                try{
+                    Thread.sleep(2);
+
+                } catch(InterruptedException e){ }
+
+            }
         }
+        
+        
+        
         
         
     }

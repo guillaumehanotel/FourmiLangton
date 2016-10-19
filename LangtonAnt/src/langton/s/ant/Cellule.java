@@ -14,7 +14,22 @@ public class Cellule {
     
     
     public Cellule(int x, int y){
+        
+        
+        
+        int nombreAleatoire = 1 + (int)(Math.random() * ((2 - 1) + 1));
+        
+        
+        /*if (nombreAleatoire ==1){
+            this.couleur=Color.WHITE;
+        }else {
+            this.couleur=Color.BLACK;
+        }
+        */
         this.couleur=Color.WHITE;
+        
+        
+        
         this.estPrésent=false;
         this.x=x;
         this.y=y;

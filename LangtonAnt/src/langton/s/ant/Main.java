@@ -15,27 +15,14 @@ public class Main {
     
     public static void main(String[] args) {
         
-        Plateau modèle = new Plateau(99);
+        Plateau modèle = new Plateau(99); // chiffre impair
         FourmiControleur controleur = new FourmiControleur(modèle);
         FourmiGraphique vue = new FourmiGraphique(controleur);
         controleur.associeInterfaceGraphique(vue);
         
         vue.afficheInterface();
         controleur.start();
-        
-        
-        posAnt(modèle);
-        
-        modèle.getAnt().Bouger();
-        posAnt(modèle);
-        modèle.getAnt().Bouger();
-        posAnt(modèle);
-        modèle.getAnt().Bouger();
-        posAnt(modèle);
-        modèle.getAnt().Bouger();
-        posAnt(modèle);
-        modèle.getAnt().Bouger();
-        posAnt(modèle);
+         
         
         
     }

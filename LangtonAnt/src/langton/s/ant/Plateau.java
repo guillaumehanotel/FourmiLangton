@@ -50,23 +50,55 @@ public class Plateau {
     
     public Cellule getCelluleGauche(int x, int y){
         
-        return this.getPlateau()[x-1][y];
+        Cellule res;
+        
+        if(x-1 >= 0){
+            res = this.getPlateau()[x-1][y];
+        } else {
+            res = this.getPlateau()[x][y];
+        }
+        
+        return res;
     }
     
     
     public Cellule getCelluleDroite(int x, int y){
+          
+        Cellule res;
         
-        return this.getPlateau()[x+1][y];
+        if(x+1 <= this.tailleGrille-1){
+            res = this.getPlateau()[x+1][y];
+        } else {
+            res = this.getPlateau()[x][y];
+        }
+        
+        return res;
     }
     
     public Cellule getCelluleHaut(int x, int y){
         
-        return this.getPlateau()[x][y+1];
+        Cellule res;
+        
+        if(y+1 <= this.tailleGrille-1){
+            res = this.getPlateau()[x][y+1];
+        } else {
+            res = this.getPlateau()[x][y];
+        }
+        
+        return res;
     }
     
     public Cellule getCelluleBas(int x, int y){
         
-        return this.getPlateau()[x][y-1];
+        Cellule res;
+        
+        if(y-1 >= 0){
+            res = this.getPlateau()[x][y-1];
+        } else {
+            res = this.getPlateau()[x][y];
+        }
+        
+        return res;
     }
     
     

@@ -1,6 +1,8 @@
 
 package langton.s.ant;
 
+import java.awt.Color;
+
 
 
 public class Cellule {
@@ -12,7 +14,7 @@ public class Cellule {
     
     
     public Cellule(int x, int y){
-        this.couleur=Color.White;
+        this.couleur=Color.white;
         this.estPrésent=false;
         this.x=x;
         this.y=y;
@@ -43,6 +45,22 @@ public class Cellule {
         this.y = y;
     }
 
+    
+    public Cellule getCelluleGauche(){
+        return new Cellule(this.x-1,this.y);
+    }
+    
+    public Cellule getCelluleDroite(){
+        return new Cellule(this.x+1,this.y);
+    }
+    public Cellule getCelluleHaut(){
+        return new Cellule(this.x,this.y+1);
+    }
+    public Cellule getCelluleBas(){
+        return new Cellule(this.x,this.y-1);
+    }
+    
+    
 
 
     public boolean isEstPrésent() {

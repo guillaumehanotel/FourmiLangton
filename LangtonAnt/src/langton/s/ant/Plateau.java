@@ -19,9 +19,10 @@ public class Plateau {
         
         this.plateau = new Cellule[this.tailleGrille][this.tailleGrille];
         
+        
         for (int i =0; i < this.tailleGrille;i++){
             
-            for (int j = 0; i < this.tailleGrille;j++){
+            for (int j = 0; j < this.tailleGrille;j++){
                 
                 
                 this.plateau[i][j] = new Cellule(i,j);
@@ -36,13 +37,15 @@ public class Plateau {
         
         
     }
+    
+    
+
+    
+    
+    
 
     public Cellule[][] getPlateau() {
         return plateau;
-    }
-
-    public void setPlateau(Cellule[][] plateau) {
-        this.plateau = plateau;
     }
 
     public int getTailleGrille() {

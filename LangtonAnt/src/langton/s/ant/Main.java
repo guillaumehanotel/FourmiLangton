@@ -25,15 +25,17 @@ public class Main {
         
         
         posAnt(modèle);
-        modèle.getAnt().Bouger();
-        posAnt(modèle);
-        modèle.getAnt().Bouger();
-        posAnt(modèle);
-        modèle.getAnt().Bouger();
-        posAnt(modèle);
-        modèle.getAnt().Bouger();
-        posAnt(modèle);
         
+        modèle.getAnt().Bouger();
+        posAnt(modèle);
+        modèle.getAnt().Bouger();
+        posAnt(modèle);
+        modèle.getAnt().Bouger();
+        posAnt(modèle);
+        modèle.getAnt().Bouger();
+        posAnt(modèle);
+        modèle.getAnt().Bouger();
+        posAnt(modèle);
         
         
     }

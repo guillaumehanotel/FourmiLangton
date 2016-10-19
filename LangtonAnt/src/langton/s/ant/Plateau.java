@@ -24,8 +24,17 @@ public class Plateau {
             
             for (int j = 0; j < this.tailleGrille;j++){
                 
-                
-                this.plateau[i][j] = new Cellule(i,j);
+                if( (   i == (this.tailleGrille-1)/2   )   &&  (  j == (this.tailleGrille-1)/2   )  )    {
+                    
+                    Cellule cell = new Cellule(i,j);
+                    this.plateau[i][j] = cell;
+                    this.ant = new Fourmi(cell);
+                    this.ant.associePlateau(this);
+                    cell.setEstPrésent(true);
+                    
+                } else {
+                    this.plateau[i][j] = new Cellule(i,j);
+                }
                 
                 
                 
@@ -33,13 +42,32 @@ public class Plateau {
             
         }
         
-        this.ant = new Fourmi(new Cellule((this.tailleGrille-1)/2,(this.tailleGrille-1)/2));
+        
         
         
     }
     
     
-
+    public Cellule getCelluleGauche(int x, int y){
+        
+        return this.getPlateau()[x-1][y];
+    }
+    
+    
+    public Cellule getCelluleDroite(int x, int y){
+        
+        return this.getPlateau()[x+1][y];
+    }
+    
+    public Cellule getCelluleHaut(int x, int y){
+        
+        return this.getPlateau()[x][y+1];
+    }
+    
+    public Cellule getCelluleBas(int x, int y){
+        
+        return this.getPlateau()[x][y-1];
+    }
     
     
     

@@ -7,6 +7,7 @@ public class Fourmi {
     
     private Orientation orientation;
     private Cellule cell;
+    private Plateau plateau;
 
     
     
@@ -17,6 +18,13 @@ public class Fourmi {
         
     }
 
+    
+    public void associePlateau(Plateau plat){
+        this.plateau=plat;
+    }
+    
+    
+    
     public Orientation getOrientation() {
         return orientation;
     }
@@ -41,7 +49,7 @@ public class Fourmi {
             switch(this.orientation){
                 case Haut : this.cell.setCouleur(Color.WHITE);
                             this.cell.setEstPrésent(false);
-                            this.setCell(this.cell.getCelluleGauche());
+                            this.setCell(this.plateau.getCelluleGauche(this.getCell().getX(),this.getCell().getY()));
                             this.cell.setEstPrésent(true);
                             this.setOrientation(Orientation.Gauche);
                             
@@ -49,21 +57,21 @@ public class Fourmi {
                             
                 case Bas : this.cell.setCouleur(Color.WHITE);
                            this.cell.setEstPrésent(false);
-                           this.setCell(this.cell.getCelluleDroite());
+                           this.setCell(this.plateau.getCelluleDroite(this.getCell().getX(),this.getCell().getY()));
                            this.cell.setEstPrésent(true);
                            this.setOrientation(Orientation.Droite);
                            break;
                             
                 case Gauche : this.cell.setCouleur(Color.WHITE);
                               this.cell.setEstPrésent(false);
-                              this.setCell(this.cell.getCelluleBas());
+                              this.setCell(this.plateau.getCelluleBas(this.getCell().getX(),this.getCell().getY()));
                               this.cell.setEstPrésent(true);
                               this.setOrientation(Orientation.Bas);
                               break;
                               
                 case Droite : this.cell.setCouleur(Color.WHITE);
                               this.cell.setEstPrésent(false);
-                              this.setCell(this.cell.getCelluleHaut());
+                              this.setCell(this.plateau.getCelluleHaut(this.getCell().getX(),this.getCell().getY()));
                               this.cell.setEstPrésent(true);
                               this.setOrientation(Orientation.Haut);
                               break;    
@@ -73,9 +81,9 @@ public class Fourmi {
                
         }else {
             switch(this.orientation){
-                case Haut : this.cell.setCouleur(Color.BLACK);
+                case Haut : this.cell.setCouleur(java.awt.Color.BLACK);
                             this.cell.setEstPrésent(false);
-                            this.setCell(this.cell.getCelluleDroite());
+                            this.setCell(this.plateau.getCelluleDroite(this.getCell().getX(),this.getCell().getY()));
                             this.cell.setEstPrésent(true);
                             this.setOrientation(Orientation.Droite);
                             
@@ -83,21 +91,21 @@ public class Fourmi {
                             
                 case Bas : this.cell.setCouleur(Color.BLACK);
                            this.cell.setEstPrésent(false);
-                           this.setCell(this.cell.getCelluleGauche());
+                           this.setCell(this.plateau.getCelluleGauche(this.getCell().getX(),this.getCell().getY()));
                            this.cell.setEstPrésent(true);
                            this.setOrientation(Orientation.Gauche);
                            break;
                             
                 case Gauche : this.cell.setCouleur(Color.BLACK);
                               this.cell.setEstPrésent(false);
-                              this.setCell(this.cell.getCelluleHaut());
+                              this.setCell(this.plateau.getCelluleHaut(this.getCell().getX(),this.getCell().getY()));
                               this.cell.setEstPrésent(true);
                               this.setOrientation(Orientation.Haut);
                               break;
                               
                 case Droite : this.cell.setCouleur(Color.BLACK);
                               this.cell.setEstPrésent(false);
-                              this.setCell(this.cell.getCelluleBas());
+                              this.setCell(this.plateau.getCelluleBas(this.getCell().getX(),this.getCell().getY()));
                               this.cell.setEstPrésent(true);
                               this.setOrientation(Orientation.Bas);
                               break;    

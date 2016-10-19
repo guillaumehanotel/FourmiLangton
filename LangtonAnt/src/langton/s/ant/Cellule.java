@@ -14,7 +14,7 @@ public class Cellule {
     
     
     public Cellule(int x, int y){
-        this.couleur=Color.white;
+        this.couleur=Color.WHITE;
         this.estPrésent=false;
         this.x=x;
         this.y=y;
@@ -24,6 +24,7 @@ public class Cellule {
     public Color getCouleur() {
         return couleur;
     }
+
 
     public void setCouleur(Color couleur) {
         this.couleur = couleur;
@@ -45,21 +46,6 @@ public class Cellule {
         this.y = y;
     }
 
-    
-    public Cellule getCelluleGauche(){
-        return new Cellule(this.x-1,this.y);
-    }
-    
-    public Cellule getCelluleDroite(){
-        return new Cellule(this.x+1,this.y);
-    }
-    public Cellule getCelluleHaut(){
-        return new Cellule(this.x,this.y+1);
-    }
-    public Cellule getCelluleBas(){
-        return new Cellule(this.x,this.y-1);
-    }
-    
     
 
 

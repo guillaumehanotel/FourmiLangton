@@ -15,12 +15,12 @@ public class FourmiControleur {
     }
     
     public void start(){
-        for(int i=0; i<10500;i++){
+        for(int i=0; i<500;i++){
             this.modèle.getAnt().Bouger();
             this.vue.getFenetre().repaint();
-        
+            this.vue.mise_a_jour();
         try{
-            Thread.sleep(500);
+            Thread.sleep(250);
             
         } catch(InterruptedException e){ }
             

@@ -16,12 +16,12 @@ public class Main {
     public static void main(String[] args) {
         
         Plateau modèle = new Plateau(99);
-        /*FourmiControleur controleur = new FourmiControleur(modèle);
+        FourmiControleur controleur = new FourmiControleur(modèle);
         FourmiGraphique vue = new FourmiGraphique(controleur);
         controleur.associeInterfaceGraphique(vue);
         
         vue.afficheInterface();
-        controleur.start();*/
+        controleur.start();
         
         
         posAnt(modèle);

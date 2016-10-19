@@ -21,6 +21,8 @@ public class FourmiGraphique {
     private JPanel panneau;
     private JPanel[][] cellules;
     private FourmiControleur ctrl;
+    private int x; // x de la fourmi
+    private int y; // y de la fourmi
     
     
     public FourmiGraphique (FourmiControleur ctrl){
@@ -29,6 +31,8 @@ public class FourmiGraphique {
         this.panneau=new JPanel();
         this.cellules = new JPanel[this.ctrl.getModèle().getTailleGrille()][this.ctrl.getModèle().getTailleGrille()];
         
+        this.x =this.getCtrl().getModèle().getAnt().getCell().getX();
+        this.y =this.getCtrl().getModèle().getAnt().getCell().getY();
         
         // Fenetre
         
@@ -54,8 +58,13 @@ public class FourmiGraphique {
                 this.cellules[i][j] = new JPanel();
                 
                 this.panneau.add(this.cellules[i][j]);
-                this.cellules[i][j].setBackground(this.ctrl.getModèle().getPlateau()[i][j].getCouleur());
                 this.cellules[i][j].setBorder(BorderFactory.createLineBorder(java.awt.Color.GRAY));
+                
+                if (i == this.ctrl.getModèle().getAnt().getCell().getX() && j == this.ctrl.getModèle().getAnt().getCell().getY()){
+                    this.cellules[i][j].setBackground(java.awt.Color.red);
+                } else {
+                    this.cellules[i][j].setBackground(this.ctrl.getModèle().getPlateau()[i][j].getCouleur());
+                }
                 
             }   
             
@@ -65,6 +74,31 @@ public class FourmiGraphique {
         
     }
 
+    
+    public void mise_a_jour(){
+        
+        for (int i =0;i<this.cellules.length;i++){
+            
+            for ( int j=0; j<this.cellules[i].length;j++){
+
+                if (i == this.ctrl.getModèle().getAnt().getCell().getX() && j == this.ctrl.getModèle().getAnt().getCell().getY()){
+                    this.cellules[i][j].setBackground(java.awt.Color.red);
+                } else {
+                    this.cellules[i][j].setBackground(this.ctrl.getModèle().getPlateau()[i][j].getCouleur());
+                }
+                
+   
+            }   
+            
+        }
+        
+        
+        
+        
+        
+    }
+    
+    
     
 
     
@@ -87,12 +121,7 @@ public class FourmiGraphique {
     
     
     
-    public void paint(Graphics g){
-        
-        
-        
-    }
-    
+
     
     
     

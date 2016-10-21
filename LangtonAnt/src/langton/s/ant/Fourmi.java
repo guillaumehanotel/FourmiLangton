@@ -6,6 +6,7 @@ import java.awt.Color;
 public class Fourmi {
     
     private Orientation orientation;
+    private Cellule firstcell;
     private Cellule cell;
     private Plateau plateau;
 
@@ -13,7 +14,8 @@ public class Fourmi {
     
     public Fourmi(Cellule cell) {
         this.orientation = Orientation.Haut;
-        this.cell=cell;
+        this.firstcell=cell;
+        this.cell=this.firstcell;
         
         
     }
@@ -39,6 +41,10 @@ public class Fourmi {
 
     public void setCell(Cellule cell) {
         this.cell = cell;
+    }
+
+    public Cellule getFirstcell() {
+        return firstcell;
     }
 
 

@@ -22,7 +22,9 @@ public class AntView {
     private JButton stop;
     private JButton lowspeed;
     private JButton fastspeed;
+    private JButton restart;
     private JLabel move;
+    private JLabel speed;
     
     
     public AntView (AntController ctrl){
@@ -37,9 +39,10 @@ public class AntView {
         this.lowspeed=new JButton("Slow");
         this.start=new JButton("Start");
         this.stop=new JButton("Stop");
-        this.move=new JLabel("                                  0");
-         
-        
+        this.restart=new JButton("Restart");
+        this.move=new JLabel("           Moves :   "+String.valueOf(this.ctrl.getCpt()));
+        this.speed =new JLabel("     Vitesse :  "+String.valueOf(this.ctrl.getTimeDelay())+" ms");
+       
         
         
         // Fenetre
@@ -57,18 +60,21 @@ public class AntView {
 
         //Label
         this.panel2.add(move);
-        
-        
+   
         //Button
         this.panel2.add(start);
-        /*this.panel2.add(stop);
+        this.panel2.add(stop);
         this.panel2.add(lowspeed);
         this.panel2.add(fastspeed);
-        */
+        this.panel2.add(speed);
+        this.panel2.add(restart);
+        
+        
         this.start.addActionListener(ctrl);
         this.stop.addActionListener(ctrl);
         this.lowspeed.addActionListener(ctrl);
         this.fastspeed.addActionListener(ctrl);
+        this.restart.addActionListener(ctrl);
         
       
         
@@ -76,7 +82,7 @@ public class AntView {
         GridLayout layout = new GridLayout(this.ctrl.getModel().getTailleGrille(),this.ctrl.getModel().getTailleGrille());
         this.panel.setLayout(layout);
         
-        GridLayout layout2 = new GridLayout(1,2);
+        GridLayout layout2 = new GridLayout(1,6);
         this.panel2.setLayout(layout2);
         
 
@@ -93,6 +99,7 @@ public class AntView {
                     this.cellules[i][j].setBackground(java.awt.Color.red); //  elle sera rouge
                 } else {
                     this.cellules[i][j].setBackground(this.ctrl.getModel().getPlateau()[i][j].getCouleur()); // sinon elle sera de la couleur qu'elle doit être
+                    
                 }
                 
             }   
@@ -112,7 +119,8 @@ public class AntView {
 
         this.cellules[x][y].setBackground(java.awt.Color.red);
         
-        this.move.setText("                                  "+String.valueOf(this.ctrl.getCpt()));
+        this.move.setText("           Moves :   "+String.valueOf(this.ctrl.getCpt()));
+        this.speed.setText("     Vitesse :  "+String.valueOf(this.ctrl.getTimeDelay())+" ms");
         
     }
     
@@ -133,5 +141,24 @@ public class AntView {
     public JLabel getMove() {
         return move;
     }
+
+    public JPanel[][] getCellules() {
+        return cellules;
+    }
+
+    public JPanel getPanel() {
+        return panel;
+    }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
+
+    
+    
  
 }

@@ -28,8 +28,6 @@ public class AntController implements ActionListener {
     }
     
 
-    
-    
        @Override     
     public void actionPerformed(ActionEvent e) {
         
@@ -39,6 +37,7 @@ public class AntController implements ActionListener {
                    run();
                 } else if (c.equals("Stop")){
                     timer.stop();
+                    view.update();
                 } else if (c.equals("Slow")){
                     
                     if (this.getTimeDelay()<5){
@@ -49,6 +48,7 @@ public class AntController implements ActionListener {
                         setTimeDelay(timeDelay+5);
                         this.timer.setDelay(timeDelay);        
                     }
+                    view.update();
                           
                 } else if (c.equals("Fast")){
                     
@@ -61,10 +61,10 @@ public class AntController implements ActionListener {
                         setTimeDelay(timeDelay-1);
                         this.timer.setDelay(timeDelay);
                     }
+                    view.update();
                 } else if (c.equals("Restart")){
                     timer.stop();
                     setup();
-                    run();
                     
                 } 
                 
@@ -136,6 +136,8 @@ public class AntController implements ActionListener {
                 
             }     
         }
+        
+        view.update();
    
     }
     

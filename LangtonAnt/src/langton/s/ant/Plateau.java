@@ -18,8 +18,7 @@ public class Plateau {
         this.tailleGrille=tailleGrille;
         
         this.plateau = new Cellule[this.tailleGrille][this.tailleGrille];
-        
-        
+               
         for (int i =0; i < this.tailleGrille;i++){
             
             for (int j = 0; j < this.tailleGrille;j++){
@@ -40,11 +39,7 @@ public class Plateau {
                 
             }  
             
-        }
-        
-        
-        
-        
+        }     
     }
     
     

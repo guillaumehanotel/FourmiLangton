@@ -19,8 +19,8 @@ public class Cellule {
         
         int nombreAleatoire = 1 + (int)(Math.random() * ((2 - 1) + 1));
         
-        
-        /*if (nombreAleatoire ==1){
+        /*
+        if (nombreAleatoire ==1){
             this.couleur=Color.WHITE;
         }else {
             this.couleur=Color.BLACK;

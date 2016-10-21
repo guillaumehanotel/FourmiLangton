@@ -15,13 +15,13 @@ public class Main {
     
     public static void main(String[] args) {
         
-        Plateau modèle = new Plateau(99); // chiffre impair
-        FourmiControleur controleur = new FourmiControleur(modèle);
-        FourmiGraphique vue = new FourmiGraphique(controleur);
+        Plateau modèle = new Plateau(101); // chiffre impair
+        AntController controleur = new AntController(modèle);
+        AntView vue = new AntView(controleur);
         controleur.associeInterfaceGraphique(vue);
         
         vue.afficheInterface();
-        controleur.start();
+        //controleur.start();
          
         
         

@@ -1,4 +1,7 @@
-package com.guillaumehanotel.langtonant;
+package com.guillaumehanotel.langtonant.core;
+
+import com.guillaumehanotel.langtonant.beans.Cellule;
+import com.guillaumehanotel.langtonant.beans.Fourmi;
 
 public class Plateau {
     

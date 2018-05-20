@@ -3,9 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.guillaumehanotel.langtonant;
+package com.guillaumehanotel.langtonant.launch;
 
 import java.awt.Color;
+
+import com.guillaumehanotel.langtonant.core.AntController;
+import com.guillaumehanotel.langtonant.core.Plateau;
+import com.guillaumehanotel.langtonant.gui.AntView;
 
 /**
  *

@@ -1,4 +1,4 @@
-package com.guillaumehanotel.langtonant;
+package com.guillaumehanotel.langtonant.core;
 
 import java.awt.Color;
 import java.awt.event.ActionEvent;
@@ -6,6 +6,9 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.Timer;
+
+import com.guillaumehanotel.langtonant.beans.Orientation;
+import com.guillaumehanotel.langtonant.gui.AntView;
 
 
 

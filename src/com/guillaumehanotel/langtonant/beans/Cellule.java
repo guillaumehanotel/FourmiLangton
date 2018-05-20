@@ -1,5 +1,5 @@
 
-package com.guillaumehanotel.langtonant;
+package com.guillaumehanotel.langtonant.beans;
 
 import java.awt.Color;
 

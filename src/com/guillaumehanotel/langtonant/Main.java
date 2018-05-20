@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package langton.s.ant;
+package com.guillaumehanotel.langtonant;
 
 import java.awt.Color;
 

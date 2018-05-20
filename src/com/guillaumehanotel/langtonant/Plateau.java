@@ -1,8 +1,4 @@
-package langton.s.ant;
- 
-import java.util.ArrayList;
-
-
+package com.guillaumehanotel.langtonant;
 
 public class Plateau {
     

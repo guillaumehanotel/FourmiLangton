@@ -1,5 +1,5 @@
 
-package langton.s.ant;
+package com.guillaumehanotel.langtonant;
 
 import java.awt.Color;
 

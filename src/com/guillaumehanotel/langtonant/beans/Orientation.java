@@ -1,17 +1,27 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.guillaumehanotel.langtonant.beans;
 
 
 public enum Orientation {
     
-    Haut,
-    Bas,
-    Gauche,
-    Droite;
+    NORTH,
+    EAST,
+    SOUTH,
+    WEST;
     
+	private static final Orientation[] VALUES = values();
+	
+	
+	public Orientation getOppositeOrientation() {
+        return VALUES[(ordinal() + 2) % 4];
+    }
+	
+	public Orientation rotateClockwise() {
+		return VALUES[(ordinal() + 1) % 4];
+	}
     
+	public Orientation rotateOppositeClockwise() {
+		return (ordinal() == 0) ? VALUES[3] : VALUES[(ordinal() - 1) % 4];
+	}
+    
+	
 }

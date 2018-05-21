@@ -1,172 +1,121 @@
 package com.guillaumehanotel.langtonant.core;
 
-import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.Timer;
 
-import com.guillaumehanotel.langtonant.beans.Orientation;
 import com.guillaumehanotel.langtonant.gui.AntView;
 
 
 
 public class AntController implements ActionListener {
-    
-    
-    private Plateau model;
-    private AntView view;
-    private static int cpt=0;
-    private int timeDelay;
-    private Timer timer;
-    
-    
-    public AntController(Plateau mod){
-        this.model=mod;
-        timeDelay=5;
-        this.timer= new Timer(timeDelay,null);
-        
-    }
-    
 
-       @Override     
-    public void actionPerformed(ActionEvent e) {
-        
-                String c = ((JButton)e.getSource()).getText(); // on récupère le label du bouton
 
-                if (c.equals("Start")){
-                   run();
-                } else if (c.equals("Stop")){
-                    timer.stop();
-                    view.update();
-                } else if (c.equals("Slow")){
-                    
-                    if (this.getTimeDelay()<5){
-                        setTimeDelay(timeDelay+1);
-                    this.timer.setDelay(timeDelay);
-                    } else {
-                    
-                        setTimeDelay(timeDelay+5);
-                        this.timer.setDelay(timeDelay);        
-                    }
-                    view.update();
-                          
-                } else if (c.equals("Fast")){
-                    
-                    if(this.timeDelay-5 >0){
-                        
-                        setTimeDelay(timeDelay-5);
-                        this.timer.setDelay(timeDelay);
-                        
-                    }else if(this.timeDelay-1 >=0){
-                        setTimeDelay(timeDelay-1);
-                        this.timer.setDelay(timeDelay);
-                    }
-                    view.update();
-                } else if (c.equals("Restart")){
-                    timer.stop();
-                    setup();
-                    
-                } 
-                
-    }
-    
-    
-    
-    
-    public void run(){
-          
+	private Plateau model;
+	private AntView view;
+	private static int moveCounter = 0;
+	private int timeDelay;
+	private Timer timer;
 
-        timer.addActionListener(new ActionListener(){            
-            public void actionPerformed(ActionEvent evt) {
 
-                int x = model.getAnt().getCell().getX();
-                int y = model.getAnt().getCell().getY();
+	public AntController(Plateau model){
+		this.model = model;
+		timeDelay = 5;
+		this.timer= new Timer(timeDelay, null);
 
-                model.getAnt().Bouger();
+	}
 
-                int x1 = model.getAnt().getCell().getX();
-                int y1 = model.getAnt().getCell().getY();
 
-                if (x == x1 && y == y1){
-                    timer.stop();
-                } else {
+	@Override     
+	public void actionPerformed(ActionEvent e) {
 
-                    cpt++;
-                    view.update();
-                    
-                }
-              
-            }
-        }); 
-                
-        timer.start();
-              
-    }
-                 
-             
-    
-    public void setup(){
-        
-        
-        setTimeDelay(5);
-        setCpt(0);
-        
-        this.model.getAnt().setCell(this.model.getAnt().getFirstcell());
-        this.model.getAnt().setOrientation(Orientation.Haut);
-        
-        this.view.setX(this.getModel().getAnt().getCell().getX());
-        this.view.setY(this.getModel().getAnt().getCell().getY());
-              
-        
-        for (int i =0;i<this.view.getCellules().length;i++){         
-            for ( int j=0; j<this.view.getCellules()[i].length;j++){
+		String c = ((JButton)e.getSource()).getText(); // on récupère le label du bouton
 
-   
-                if (i == this.getModel().getAnt().getCell().getX() && j == this.getModel().getAnt().getCell().getY()){ // si la coordonnée correspond à celle de la fourmi,
-                    this.model.getPlateau()[i][j].setEstPrésent(true);
-                    this.model.getPlateau()[i][j].setCouleur(Color.red);
-                    this.view.getCellules()[i][j].setBackground(java.awt.Color.red); //  elle sera rouge
-                    this.model.getPlateau()[i][j].setEstPrésent(true);
-                } else {
-                    this.model.getPlateau()[i][j].setEstPrésent(false);
-                    this.model.getPlateau()[i][j].setCouleur(Color.white);
-                    this.view.getCellules()[i][j].setBackground(Color.white); // sinon elle sera de la couleur qu'elle doit être
-                    this.model.getPlateau()[i][j].setEstPrésent(false);
-                }
-                
-            }     
-        }
-        
-        view.update();
-   
-    }
-    
-    
-    
-    public int getCpt() {
-        return cpt;
-    }
+		if (c.equals("Start")){
+			run();
+		} else if (c.equals("Stop")){
+			timer.stop();
+		} else if (c.equals("Slow")){
+			runSlower();
+		} else if (c.equals("Fast")){
+			runFaster();
+		} else if (c.equals("Restart")){
+			timer.stop();
+			reinitialisation();
+		} 
+		view.update();
+	}
 
-    public static void setCpt(int cpt) {
-        AntController.cpt = cpt;
-    }
+	private void runSlower() {
+		changeDelay(this.getTimeDelay() < 5 ? timeDelay+1 : timeDelay+5);
+	}
+	
+	private void runFaster() {
+		if(this.timeDelay-5 > 0){
+			changeDelay(timeDelay-5);
+		} else if(this.timeDelay-1 >= 0){
+			changeDelay(timeDelay-1);
+		}
+	}
+	
+	
+	private void changeDelay(int delay) {
+		setTimeDelay(delay);
+		this.timer.setDelay(delay);
+	}
+	
 
-    public Plateau getModel(){
-        return this.model;
-    }
-     
-    public void associeInterfaceGraphique(AntView vue){
-        this.view=vue;
-    }
+	public void run(){
+		timer.addActionListener(new ActionListener(){            
+			public void actionPerformed(ActionEvent evt) {
 
-    public void setTimeDelay(int timeDelay) {
-        this.timeDelay = timeDelay;
-    }
+				model.getAnt().move();
 
-    public int getTimeDelay() {
-        return timeDelay;
-    }
-  
+				if (model.getAnt().isStopped()){
+					timer.stop();
+				} else {
+					moveCounter++;
+					view.update();
+				}
+			}
+		}); 
+		timer.start();
+	}
+
+
+	public void reinitialisation(){
+		changeDelay(5);
+		setMoveCounter(0);
+
+		this.model.reinitialisation();
+		this.view.reinitialisation();
+	}
+	
+
+	public int getMoveCounter() {
+		return moveCounter;
+	}
+
+	public static void setMoveCounter(int cpt) {
+		AntController.moveCounter = cpt;
+	}
+
+	public Plateau getModel(){
+		return this.model;
+	}
+
+	public void associeInterfaceGraphique(AntView vue){
+		this.view = vue;
+	}
+
+	public void setTimeDelay(int timeDelay) {
+		this.timeDelay = timeDelay;
+	}
+
+	public int getTimeDelay() {
+		return timeDelay;
+	}
+
 }

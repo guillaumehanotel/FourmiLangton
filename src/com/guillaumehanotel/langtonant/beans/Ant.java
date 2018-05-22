@@ -5,7 +5,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 import com.guillaumehanotel.langtonant.core.Plateau;
-import com.guillaumehanotel.utils.AntBehavior;
+import com.guillaumehanotel.langtonant.utils.AntBehavior;
 
 
 

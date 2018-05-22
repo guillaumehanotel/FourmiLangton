@@ -1,4 +1,4 @@
-package com.guillaumehanotel.utils;
+package com.guillaumehanotel.langtonant.utils;
 
 import java.awt.Color;
 import java.lang.reflect.Method;

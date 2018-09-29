@@ -13,15 +13,15 @@ import com.guillaumehanotel.langtonant.gui.AntView;
 public class AntController implements ActionListener {
 
 
-	private Plateau model;
+	private Board board;
 	private AntView view;
 	private static int moveCounter = 0;
 	private int timeDelay;
 	private Timer timer;
 
 
-	public AntController(Plateau model){
-		this.model = model;
+	public AntController(Board board){
+		this.board = board;
 		timeDelay = 5;
 		this.timer= new Timer(timeDelay, null);
 
@@ -33,18 +33,24 @@ public class AntController implements ActionListener {
 
 		String c = ((JButton)e.getSource()).getText(); // on récupère le label du bouton
 
-		if (c.equals("Start")){
-			run();
-		} else if (c.equals("Stop")){
-			timer.stop();
-		} else if (c.equals("Slow")){
-			runSlower();
-		} else if (c.equals("Fast")){
-			runFaster();
-		} else if (c.equals("Restart")){
-			timer.stop();
-			reinitialisation();
-		} 
+        switch (c) {
+            case "Start":
+                run();
+                break;
+            case "Stop":
+                timer.stop();
+                break;
+            case "Slow":
+                runSlower();
+                break;
+            case "Fast":
+                runFaster();
+                break;
+            case "Restart":
+                timer.stop();
+                reinitialization();
+                break;
+        }
 		view.update();
 	}
 
@@ -67,13 +73,13 @@ public class AntController implements ActionListener {
 	}
 	
 
-	public void run(){
+	private void run(){
 		timer.addActionListener(new ActionListener(){            
 			public void actionPerformed(ActionEvent evt) {
 
-				model.getAnt().move();
+				board.getAnt().move();
 
-				if (model.getAnt().isStopped()){
+				if (board.getAnt().isStopped()){
 					timer.stop();
 				} else {
 					moveCounter++;
@@ -85,12 +91,12 @@ public class AntController implements ActionListener {
 	}
 
 
-	public void reinitialisation(){
+	private void reinitialization(){
 		changeDelay(5);
 		setMoveCounter(0);
 
-		this.model.reinitialisation();
-		this.view.reinitialisation();
+		this.board.reinitialization();
+		this.view.reinitialization();
 	}
 	
 
@@ -98,19 +104,19 @@ public class AntController implements ActionListener {
 		return moveCounter;
 	}
 
-	public static void setMoveCounter(int cpt) {
+	private static void setMoveCounter(int cpt) {
 		AntController.moveCounter = cpt;
 	}
 
-	public Plateau getModel(){
-		return this.model;
+	public Board getBoard(){
+		return this.board;
 	}
 
-	public void associeInterfaceGraphique(AntView vue){
+	public void bindInterface(AntView vue){
 		this.view = vue;
 	}
 
-	public void setTimeDelay(int timeDelay) {
+	private void setTimeDelay(int timeDelay) {
 		this.timeDelay = timeDelay;
 	}
 

@@ -1,4 +1,5 @@
 package com.guillaumehanotel.langtonant.gui;
+
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 
@@ -9,106 +10,99 @@ import com.guillaumehanotel.langtonant.core.AntController;
 
 public class AntView {
 
-	private JFrame frame;
-	
-	private ControlsPanel jp_controls;
-	private SketchPanel jp_sketch;
-	
-	private AntController ctrl;
-	
-	private int x; // x de la fourmi
-	private int y; // y de la fourmi
-	
+    private JFrame frame;
+
+    private ControlsPanel jp_controls;
+    private SketchPanel jp_sketch;
+
+    private AntController ctrl;
+
+    private int x; // x de la fourmi
+    private int y; // y de la fourmi
 
 
+    public AntView(AntController ctrl) {
+        this.frame = new JFrame("Fourmi de Langton");
+        this.ctrl = ctrl;
 
-	public AntView (AntController ctrl){
-		this.frame = new JFrame("Fourmi de Langton");
-		this.ctrl = ctrl;
-		
-		this.jp_sketch = new SketchPanel(ctrl);
-		this.jp_controls = new ControlsPanel(ctrl);
-		 
-		updateCurrentPosition();
+        this.jp_sketch = new SketchPanel(ctrl);
+        this.jp_controls = new ControlsPanel(ctrl);
 
-		// Fenetre
-		this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.frame.setPreferredSize(new Dimension(900,900));
+        updateCurrentPosition();
 
-		// Ajout des panels à la frame
-		this.frame.getContentPane().add(jp_sketch,BorderLayout.NORTH);
-		this.frame.getContentPane().add(jp_controls);
+        // Fenetre
+        this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.frame.setPreferredSize(new Dimension(900, 900));
 
-	}
+        // Ajout des panels à la frame
+        this.frame.getContentPane().add(jp_sketch, BorderLayout.NORTH);
+        this.frame.getContentPane().add(jp_controls);
 
-	
-	
+    }
 
-	public void update(){ // mise à jour des couleurs
 
-		// la case actuelle n'est plus rouge et retrouve sa couleur d'origine
-		this.jp_sketch.getCellules()[x][y].setBackground(this.ctrl.getModel().getPlateau()[x][y].getColor());
+    public void update() {
 
-		updateCurrentPosition();
+        // la case actuelle n'est plus rouge et retrouve sa couleur d'origine
+        this.jp_sketch.getCellules()[x][y].setBackground(this.ctrl.getBoard().getBoard()[x][y].getColor());
 
-		// la nouvelle case de la fourmi devient rouge
-		this.jp_sketch.getCellules()[x][y].setBackground(java.awt.Color.red);
-		
-		updateLabels();
+        updateCurrentPosition();
 
-	}
-	
-	public void updateCurrentPosition() {
-		this.x = this.ctrl.getModel().getAnt().getCell().getX();
-		this.y = this.ctrl.getModel().getAnt().getCell().getY();
-	}
+        // la nouvelle case de la fourmi devient rouge
+        this.jp_sketch.getCellules()[x][y].setBackground(java.awt.Color.red);
 
-	private void updateLabels() {
-		this.jp_controls.getJl_move().setText("    Moves :   "+String.valueOf(this.ctrl.getMoveCounter()));
-		this.jp_controls.getJl_speed().setText("     Vitesse :  "+String.valueOf(this.ctrl.getTimeDelay())+" ms");
-	}
-	
-	
-	public void reinitialisation() {
-		updateCurrentPosition();
-		this.jp_sketch.reinitialisation();
-	}
+        updateLabels();
 
-	public void afficheInterface(){
-		this.frame.pack();
-		this.frame.setVisible(true);   
-	}
+    }
 
-	public AntController getCtrl() {
-		return ctrl;
-	}
+    private void updateCurrentPosition() {
+        this.x = this.ctrl.getBoard().getAnt().getCell().getX();
+        this.y = this.ctrl.getBoard().getAnt().getCell().getY();
+    }
 
-	public JFrame getFrame() {
-		return frame;
-	}
+    private void updateLabels() {
+        this.jp_controls.getJl_move().setText("    Moves :   " + String.valueOf(this.ctrl.getMoveCounter()));
+        this.jp_controls.getJl_speed().setText("     Vitesse :  " + String.valueOf(this.ctrl.getTimeDelay()) + " ms");
+    }
 
-	public JPanel[][] getCellules() {
-		return jp_sketch.getCellules();
-	}
 
-	public void setX(int x) {
-		this.x = x;
-	}
+    public void reinitialization() {
+        updateCurrentPosition();
+        this.jp_sketch.reinitialisation();
+    }
 
-	public void setY(int y) {
-		this.y = y;
-	}
+    public void displayInterface() {
+        this.frame.pack();
+        this.frame.setVisible(true);
+    }
 
-	public ControlsPanel getJp_controls() {
-		return jp_controls;
-	}
+    public AntController getCtrl() {
+        return ctrl;
+    }
 
-	public SketchPanel getJp_sketch() {
-		return jp_sketch;
-	}
+    public JFrame getFrame() {
+        return frame;
+    }
 
-	
+    public JPanel[][] getCellules() {
+        return jp_sketch.getCellules();
+    }
 
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
+
+    public ControlsPanel getJp_controls() {
+        return jp_controls;
+    }
+
+    public SketchPanel getJp_sketch() {
+        return jp_sketch;
+    }
 
 
 }

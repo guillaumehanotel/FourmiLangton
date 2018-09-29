@@ -23,11 +23,7 @@ public class Cell {
     }
 
     public void invertColor() {
-		if (this.color == Color.BLACK) {
-			this.color = Color.WHITE;
-		} else if (this.color == Color.WHITE){
-			this.color = Color.BLACK;
-		}
+        this.color = (this.color == Color.BLACK) ? Color.WHITE : Color.BLACK;
 	}
     
     public Color getColor() {

@@ -3,7 +3,6 @@ package com.guillaumehanotel.langtonant.gui;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 
-import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
 import com.guillaumehanotel.langtonant.core.AntController;
@@ -24,7 +23,7 @@ public class SketchPanel extends JPanel {
 
 	}
 	
-	public void reinitialisation() {
+	void reinitialisation() {
 		for (int i =0;i<this.cellules.length;i++){
 			for ( int j=0; j<this.cellules[i].length;j++){
 				setCellColor(i, j);
@@ -32,8 +31,8 @@ public class SketchPanel extends JPanel {
 		}
 	}
 	
-	public void initCells() {
-		this.cellules = new JPanel[this.controller.getModel().getTailleGrille()][this.controller.getModel().getTailleGrille()];
+	private void initCells() {
+		this.cellules = new JPanel[this.controller.getBoard().getGridLength()][this.controller.getBoard().getGridLength()];
 		
 		for (int i =0;i<this.cellules.length;i++){
 			for ( int j=0; j<this.cellules[i].length;j++){
@@ -48,17 +47,17 @@ public class SketchPanel extends JPanel {
 		if(isAntPosition(i, j)){ // si la coordonnee correspond à celle de la fourmi,
 			this.cellules[i][j].setBackground(java.awt.Color.red); //  elle sera rouge
 		} else {
-			this.cellules[i][j].setBackground(this.controller.getModel().getPlateau()[i][j].getColor()); // sinon elle sera de la couleur qu'elle doit etre
+			this.cellules[i][j].setBackground(this.controller.getBoard().getBoard()[i][j].getColor()); // sinon elle sera de la couleur qu'elle doit etre
 		}
 	}
 	
 	private boolean isAntPosition(int i, int j) {
-		return (i == this.controller.getModel().getAnt().getCell().getX() && j == this.controller.getModel().getAnt().getCell().getY());
+		return (i == this.controller.getBoard().getAnt().getCell().getX() && j == this.controller.getBoard().getAnt().getCell().getY());
 	}
 	
 	private void setLayout() {
-		// Layout : Grille de la taille du plateau 
-		GridLayout layout = new GridLayout(this.controller.getModel().getTailleGrille(),this.controller.getModel().getTailleGrille());
+		// Layout : Grille de la taille du board
+		GridLayout layout = new GridLayout(this.controller.getBoard().getGridLength(),this.controller.getBoard().getGridLength());
 		this.setLayout(layout);
 	}
 

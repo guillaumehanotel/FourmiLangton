@@ -1,24 +1,22 @@
 package com.guillaumehanotel.langtonant.launch;
 
 import com.guillaumehanotel.langtonant.core.AntController;
-import com.guillaumehanotel.langtonant.core.Plateau;
+import com.guillaumehanotel.langtonant.core.Board;
 import com.guillaumehanotel.langtonant.gui.AntView;
 
-/**
- *
- * @author Guillaume Hanotel
- */
+
+
 public class Main {
 	
 	public static void main(String[] args) {
 
 		boolean borderMode = true;
 		
-		Plateau modele = new Plateau(151, borderMode); // chiffre impair
-		AntController controleur = new AntController(modele);
-		AntView vue = new AntView(controleur);
-		controleur.associeInterfaceGraphique(vue);
-		vue.afficheInterface();
+		Board board = new Board(151, borderMode); // chiffre impair
+		AntController controller = new AntController(board);
+		AntView view = new AntView(controller);
+		controller.bindInterface(view);
+		view.displayInterface();
 
 	}
 }

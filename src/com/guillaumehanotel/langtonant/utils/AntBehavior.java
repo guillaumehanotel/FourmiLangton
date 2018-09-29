@@ -5,7 +5,7 @@ import java.lang.reflect.Method;
 import java.util.HashMap;
 
 import com.guillaumehanotel.langtonant.beans.Orientation;
-import com.guillaumehanotel.langtonant.core.Plateau;
+import com.guillaumehanotel.langtonant.core.Board;
 
 public class AntBehavior {
 	
@@ -27,15 +27,15 @@ public class AntBehavior {
 	}
 	
 	private void initBehaviors() throws NoSuchMethodException, SecurityException {
-		this.blackBehavior.put(Orientation.NORTH, Plateau.class.getMethod("getCelluleGauche", int.class, int.class));
-		this.blackBehavior.put(Orientation.SOUTH, Plateau.class.getMethod("getCelluleDroite", int.class, int.class));
-		this.blackBehavior.put(Orientation.WEST, Plateau.class.getMethod("getCelluleBas", int.class, int.class));
-		this.blackBehavior.put(Orientation.EAST, Plateau.class.getMethod("getCelluleHaut", int.class, int.class));
+		this.blackBehavior.put(Orientation.NORTH, Board.class.getMethod("getLeftCell", int.class, int.class));
+		this.blackBehavior.put(Orientation.SOUTH, Board.class.getMethod("getRightCell", int.class, int.class));
+		this.blackBehavior.put(Orientation.WEST, Board.class.getMethod("getBottomCell", int.class, int.class));
+		this.blackBehavior.put(Orientation.EAST, Board.class.getMethod("getTopCell", int.class, int.class));
 		
-		this.whiteBehavior.put(Orientation.NORTH, Plateau.class.getMethod("getCelluleDroite", int.class, int.class));
-		this.whiteBehavior.put(Orientation.SOUTH, Plateau.class.getMethod("getCelluleGauche", int.class, int.class));
-		this.whiteBehavior.put(Orientation.WEST, Plateau.class.getMethod("getCelluleHaut", int.class, int.class));
-		this.whiteBehavior.put(Orientation.EAST, Plateau.class.getMethod("getCelluleBas", int.class, int.class));
+		this.whiteBehavior.put(Orientation.NORTH, Board.class.getMethod("getRightCell", int.class, int.class));
+		this.whiteBehavior.put(Orientation.SOUTH, Board.class.getMethod("getLeftCell", int.class, int.class));
+		this.whiteBehavior.put(Orientation.WEST, Board.class.getMethod("getTopCell", int.class, int.class));
+		this.whiteBehavior.put(Orientation.EAST, Board.class.getMethod("getBottomCell", int.class, int.class));
 	}
 	
 	public Method getBehavior(Color color, Orientation orientation) {

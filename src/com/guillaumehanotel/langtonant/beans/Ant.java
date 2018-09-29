@@ -4,17 +4,15 @@ import java.awt.Color;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
-import com.guillaumehanotel.langtonant.core.Plateau;
+import com.guillaumehanotel.langtonant.core.Board;
 import com.guillaumehanotel.langtonant.utils.AntBehavior;
-
-
 
 public class Ant {
 
 	private Orientation orientation;
 	private Cell firstcell;
 	private Cell cell;
-	private Plateau plateau;
+	private Board board;
 	
 	private boolean isStopped;
 
@@ -58,7 +56,7 @@ public class Ant {
 		Method behavior = antBrain.getBehavior(color, this.orientation);
 
 		this.cell.setPresence(false);
-		this.setCell((Cell)behavior.invoke(this.plateau, this.getCell().getX(), this.getCell().getY()));
+		this.setCell((Cell)behavior.invoke(this.board, this.getCell().getX(), this.getCell().getY()));
 		this.cell.setPresence(true);	
 	}
 
@@ -68,15 +66,15 @@ public class Ant {
 	
 	
 	
-	public void associePlateau(Plateau plat){
-		this.plateau=plat;
+	public void associeBoard(Board board){
+		this.board=board;
 	}
 
 	public Orientation getOrientation() {
 		return orientation;
 	}
 
-	public void setOrientation(Orientation orientation) {
+	private void setOrientation(Orientation orientation) {
 		this.orientation = orientation;
 	}
 
